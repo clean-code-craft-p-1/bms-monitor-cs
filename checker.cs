@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 class Checker
 {
-    public static bool VitalsOK(float temperature, int pulseRate, int spo2)
+    public static bool VitalsOk(float temperature, int pulseRate, int spo2)
     {
         if(temperature >102 || temperature < 95)
         {
