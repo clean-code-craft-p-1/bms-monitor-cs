@@ -2,9 +2,6 @@ name: Build Run
 
 on: [push, pull_request]
 
-env:
-  DOTNET_VERSION: '6.0.401'
-
 jobs:
 
   build:
@@ -16,11 +13,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: 10.0.x
 
     - name: Run tests and collect coverage
       run: dotnet test --collect:"XPlat Code Coverage"
@@ -32,7 +29,7 @@ jobs:
       run: reportgenerator "-reports:TestResults\*\*.xml" "-targetdir:coverage"
 
     - name: Create coverage artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: coverage
         path: coverage
